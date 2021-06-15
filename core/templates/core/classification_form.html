@@ -1,0 +1,53 @@
+{% extends 'base/base.html' %}
+{% load bootstrap4 %}
+{% load admin_link %}
+{% load static %}
+{% load dt_content %}
+{% load image_blurb %}
+
+{% block head %}
+<title>Django Template</title>
+<link rel="stylesheet" href="{% static 'dt_content/css/styles.css' %}">
+<link rel="stylesheet" href="{% static 'core/css/styles.css' %}">
+<link rel="stylesheet" href="{% static 'core/css/navbar.css' %}">
+<link rel="stylesheet" href="{% static 'core/css/header.css' %}">
+<link rel="stylesheet" href="{% static 'core/css/footer.css' %}">
+{% endblock head%}
+
+{% block body %}
+
+{% include 'core/navbar.html' %}
+
+<div class="header header">
+  {% image_blurb 'index/background' placeholder='core/img/background.jpg' as image_blurb %}
+  <div class="header-background" style="background-image: url('{{ image_blurb.src }}')">
+  </div>
+  <div class="header-tint"></div>
+  <div class="header-content">
+    <div class="container h-100 d-flex flex-column justify-content-center">
+      <div class="hero-title">기능 2</div>
+    </div>
+  </div>
+</div>
+
+<div class="container my-3">
+  {% include image_blurb.update_link_template_name %}
+</div>
+
+<div class="content">
+  <div class="container py-5">
+    <h1>기능 2. 사진 분류</h1>
+    <form method="post" enctype="multipart/form-data">
+      {% bootstrap_form form %}
+      <button class="btn btn-primary">
+        제출하기
+      </button>
+    </form>
+  </div>
+</div>
+
+{% include 'core/footer.html' %}
+
+{% endblock body %}
+{% block body_script %}
+{% endblock body_script %}
